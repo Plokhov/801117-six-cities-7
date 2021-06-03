@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Mikhail Plokhov](https://up.htmlacademy.ru/react/7/user/801117).
-* Наставник: `Павел Карастелев`(https://htmlacademy.ru/profile/bini1988).
+* Наставник: [Николай Карастелев](https://htmlacademy.ru/profile/bini1988).
 
 ---
 
