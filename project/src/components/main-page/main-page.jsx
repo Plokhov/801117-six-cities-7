@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../header/header';
-import PlaceCard from '../place-card/place-card';
+import PlaceCardsList from '../place-cards-list/place-cards-list';
+
+import placeCardProp from '../place-card/place-card.prop';
 
 function MainPage(props) {
   const { placeCards = []} = props;
@@ -69,9 +71,7 @@ function MainPage(props) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {placeCards.map((placeCard) => <PlaceCard key={placeCard.id} card={placeCard}/>)}
-              </div>
+              <PlaceCardsList placeCards={placeCards} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -83,15 +83,7 @@ function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  placeCards: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      photo: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  placeCards: PropTypes.arrayOf(placeCardProp).isRequired,
 };
 
 export default MainPage;

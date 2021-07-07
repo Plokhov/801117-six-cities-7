@@ -4,26 +4,28 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import { AppRoute } from '../../const';
 
 import MainPage from '../main-page/main-page';
-import SignIn from '../sign-in/sign-in';
-import Favoriets from '../favoriets/favoriets';
-import Room from '../room/room';
+import SignInPage from '../sign-in-page/sign-in-page';
+import FavoritesPage from '../favorites-page/favorites-page';
+import RoomPage from '../room-page/room-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-function App({placeCards}) {
+import placeCardProp from '../place-card/place-card.prop';
+
+function App({offers}) {
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.MAIN} exact>
-          <MainPage placeCards={placeCards}/>
+          <MainPage placeCards={offers}/>
         </Route>
         <Route path={AppRoute.SIGN_IN} exact>
-          <SignIn />
+          <SignInPage />
         </Route>
-        <Route path={AppRoute.FAVORIETS} exact>
-          <Favoriets />
+        <Route path={AppRoute.FAVORITES} exact>
+          <FavoritesPage placeCards={offers} />
         </Route>
         <Route path={AppRoute.ROOM} exact>
-          <Room />
+          <RoomPage />
         </Route>
         <Route>
           <NotFoundPage />
@@ -37,13 +39,5 @@ export default App;
 
 
 App.propTypes = {
-  placeCards: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      photo: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  offers: PropTypes.arrayOf(placeCardProp).isRequired,
 };

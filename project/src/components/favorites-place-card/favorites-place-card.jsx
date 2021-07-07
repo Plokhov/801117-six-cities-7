@@ -1,16 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { AppRoute, OffersApartmentType } from '../../const';
+import { OffersApartmentType, AppRoute } from '../../const';
 
-import placeCardProp from './place-card.prop';
+import placeCardProp from '../place-card/place-card.prop';
 
-function PlaceCard(props) {
-  const {placeCard, onMouseOver} = props;
+function FavoritesPlaceCard({ placeCard }) {
   const {
-    isPremium = false,
-    isFavorite = false,
     previewImage,
     price,
     type,
@@ -18,41 +14,29 @@ function PlaceCard(props) {
     rating,
   } = placeCard;
 
-  let classNameIsFavorite = 'place-card__bookmark-button button';
-  if(isFavorite) {
-    classNameIsFavorite += ' place-card__bookmark-button--active';
-  }
-
   return (
-    <article className="cities__place-card place-card" onMouseOver={onMouseOver}>
-      {isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className="favorites__card place-card">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link
           to={{
             pathname: AppRoute.ROOM,
             state: placeCard,
           }}
         >
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title}/>
+          <img className="place-card__image" src={previewImage} width="150" height="110" alt={title} />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={classNameIsFavorite} type="button"
-          >
+          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -73,12 +57,13 @@ function PlaceCard(props) {
         </h2>
         <p className="place-card__type">{OffersApartmentType[type]}</p>
       </div>
-    </article>);
+    </article>
+  );
 }
 
-PlaceCard.propTypes = {
+FavoritesPlaceCard.propTypes = {
   placeCard: placeCardProp,
-  onMouseOver: PropTypes.func,
 };
 
-export default PlaceCard;
+
+export default FavoritesPlaceCard;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../header/header';
 
-function SignIn() {
+function SignInPage() {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -36,4 +36,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignInPage;
