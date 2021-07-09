@@ -1,13 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { ApartmentType } from '../../const';
 
-import placeCardProp from './place-card.prop';
+import placeCardProp from '../place-card/place-card.prop';
 
-function PlaceCard(props) {
-  const {placeCard, onMouseOver, onMouseLeave} = props;
+function NearbyPlaceCard({ placeCard }) {
   const {
     id,
     isPremium = false,
@@ -22,15 +20,15 @@ function PlaceCard(props) {
   const classNameIsFavorite = `place-card__bookmark-button button ${isFavorite && ' place-card__bookmark-button--active'}`;
 
   return (
-    <article className="cities__place-card place-card" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+    <article className="near-places__card place-card">
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/:${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title}/>
+      <div className="near-places__image-wrapper place-card__image-wrapper">
+        <Link to={`/offer/${id}`}>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
         </Link>
       </div>
       <div className="place-card__info">
@@ -43,7 +41,7 @@ function PlaceCard(props) {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -59,13 +57,12 @@ function PlaceCard(props) {
         </h2>
         <p className="place-card__type">{ApartmentType[type]}</p>
       </div>
-    </article>);
+    </article>
+  );
 }
 
-PlaceCard.propTypes = {
+NearbyPlaceCard.propTypes = {
   placeCard: placeCardProp,
-  onMouseOver: PropTypes.func,
-  onMouseLeave: PropTypes.func,
 };
 
-export default PlaceCard;
+export default NearbyPlaceCard;

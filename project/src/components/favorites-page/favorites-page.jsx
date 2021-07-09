@@ -15,7 +15,6 @@ function FavoritesPage(props) {
 
   const listOfUniqueCities = Array.from(new Set(listOfCities));
 
-
   return (
     <div className="page">
       <Header />

@@ -5,6 +5,7 @@ import PlaceCard from '../place-card/place-card';
 import placeCardProp from '../place-card/place-card.prop';
 
 function PlaceCardsList({placeCards = []}) {
+  // eslint-disable-next-line no-unused-vars
   const [activePlaceCard, setActivePlaceCard] = useState(0);
 
   return (
@@ -14,6 +15,7 @@ function PlaceCardsList({placeCards = []}) {
           key={placeCard.id}
           placeCard={placeCard}
           onMouseOver={() => setActivePlaceCard(placeCard.id)}
+          onMouseLeave={() => setActivePlaceCard(0)}
         />))}
     </div>
   );

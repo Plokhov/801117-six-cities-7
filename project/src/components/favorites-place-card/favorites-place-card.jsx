@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { OffersApartmentType, AppRoute } from '../../const';
+import { ApartmentType } from '../../const';
 
 import placeCardProp from '../place-card/place-card.prop';
 
 function FavoritesPlaceCard({ placeCard }) {
   const {
+    id,
     previewImage,
     price,
     type,
@@ -17,12 +18,7 @@ function FavoritesPlaceCard({ placeCard }) {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link
-          to={{
-            pathname: AppRoute.ROOM,
-            state: placeCard,
-          }}
-        >
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt={title} />
         </Link>
       </div>
@@ -46,16 +42,11 @@ function FavoritesPlaceCard({ placeCard }) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link
-            to={{
-              pathname: AppRoute.ROOM,
-              state: placeCard,
-            }}
-          >
+          <Link to={`/offer/${id}`}>
             {title}
           </Link>
         </h2>
-        <p className="place-card__type">{OffersApartmentType[type]}</p>
+        <p className="place-card__type">{ApartmentType[type]}</p>
       </div>
     </article>
   );

@@ -11,21 +11,21 @@ import NotFoundPage from '../not-found-page/not-found-page';
 
 import placeCardProp from '../place-card/place-card.prop';
 
-function App({offers}) {
+function App({placeCards}) {
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.MAIN} exact>
-          <MainPage placeCards={offers}/>
+          <MainPage placeCards={placeCards}/>
         </Route>
         <Route path={AppRoute.SIGN_IN} exact>
           <SignInPage />
         </Route>
         <Route path={AppRoute.FAVORITES} exact>
-          <FavoritesPage placeCards={offers} />
+          <FavoritesPage placeCards={placeCards} />
         </Route>
         <Route path={AppRoute.ROOM} exact>
-          <RoomPage />
+          <RoomPage placeCards={placeCards}/>
         </Route>
         <Route>
           <NotFoundPage />
@@ -39,5 +39,5 @@ export default App;
 
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(placeCardProp).isRequired,
+  placeCards: PropTypes.arrayOf(placeCardProp).isRequired,
 };
